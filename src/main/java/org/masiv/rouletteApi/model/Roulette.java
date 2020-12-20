@@ -5,6 +5,8 @@ import org.masiv.rouletteApi.exceptions.RouletteException;
 import org.springframework.data.annotation.Id;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 @Getter @Setter
 public class Roulette {
     @Id
@@ -21,9 +23,13 @@ public class Roulette {
     }
     public void close() throws RouletteException{
         if(state.equals(RouletteState.CLOSE)) throw  new RouletteException(RouletteException.CLOSED_ROULETTE);
+        Random random = new Random();
+        int winnerNumber = random.nextInt(37);
+        bets.forEach(bet -> bet.calculatePrize(winnerNumber));
     }
     public void addBet(Bet bet) throws RouletteException{
         if (state.equals(RouletteState.CLOSE)) throw  new RouletteException(RouletteException.CLOSED_ROULETTE);
         bets.add(bet);
+
     }
 }
