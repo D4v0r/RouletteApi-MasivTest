@@ -3,12 +3,16 @@ import lombok.Getter;
 import lombok.Setter;
 import org.masiv.rouletteApi.exceptions.RouletteException;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
+@RedisHash("Roulette")
 @Getter @Setter
-public class Roulette {
+public class Roulette implements Serializable {
+    private final static long serializableVersionUID = 3L;
     @Id
     private String id;
     private RouletteState state;
