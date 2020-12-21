@@ -1,15 +1,15 @@
 package org.masiv.rouletteApi.model;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import org.masiv.rouletteApi.exceptions.BetException;
 import org.springframework.data.annotation.Id;
-@JsonIdentityInfo(
-        use = JsonIdentityInfo.Id.NAME,
-        property = "type"
+import org.springframework.data.redis.core.index.Indexed;
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME, property = "type"
 )
 @JsonSubTypes({
         @JsonSubTypes.Type(value = BetColor.class, name = "color"),
@@ -17,7 +17,7 @@ import org.springframework.data.annotation.Id;
 })
 @Getter @Setter
 public abstract class Bet {
-    @Id
+    @Indexed
     private String id;
     private User user;
     private double money;

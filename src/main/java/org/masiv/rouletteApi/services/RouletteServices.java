@@ -9,7 +9,7 @@ import java.util.List;
 public interface RouletteServices {
     String createRoulette();
     void openRouletteById(String id) throws RouletteServicesException;
-    void addBetById(String id, Bet bet) throws RouletteServicesException;
+    void addBetById(String id, Bet bet, String userId) throws RouletteServicesException;
     List<Bet> closeRouletteById(String id) throws RouletteServicesException;
     List<Roulette> getAllRoulettes();
 }

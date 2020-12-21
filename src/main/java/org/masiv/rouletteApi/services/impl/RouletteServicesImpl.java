@@ -4,11 +4,14 @@ import org.masiv.rouletteApi.exceptions.RouletteException;
 import org.masiv.rouletteApi.exceptions.RouletteServicesException;
 import org.masiv.rouletteApi.model.Bet;
 import org.masiv.rouletteApi.model.Roulette;
+import org.masiv.rouletteApi.model.User;
 import org.masiv.rouletteApi.persistence.RouletteRepository;
 import org.masiv.rouletteApi.services.RouletteServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+@Service()
 public class RouletteServicesImpl implements RouletteServices {
     @Autowired
     private RouletteRepository repository;
@@ -28,8 +31,9 @@ public class RouletteServicesImpl implements RouletteServices {
         }
     }
     @Override
-    public void addBetById(String id, Bet bet) throws RouletteServicesException {
+    public void addBetById(String id, Bet bet, String userId) throws RouletteServicesException {
         Roulette roulette = repository.findById(id).orElseThrow(()->new RouletteServicesException(RouletteServicesException.ROULETTE_NOT_FOUND));
+        bet.setUser(new User(userId));
         try {
             roulette.addBet(bet);
         }catch (RouletteException e){
