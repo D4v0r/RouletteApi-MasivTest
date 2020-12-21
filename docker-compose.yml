@@ -5,6 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: masivTest
+    image: d4v0r/masivtest
     environment:
       - REDIS_HOST=172.17.0.1
     depends_on:
