@@ -4,8 +4,8 @@ import lombok.Setter;
 @Getter @Setter
 public class ColorBet extends Bet{
     private BetColor color;
-    public ColorBet(double money, User user, BetColor color) {
-        super(money, user);
+    public ColorBet(double money, BetColor color) {
+        super(money);
         setColor(color);
     }
     @Override

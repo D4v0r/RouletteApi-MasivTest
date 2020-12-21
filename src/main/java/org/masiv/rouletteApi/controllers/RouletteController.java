@@ -1,6 +1,7 @@
 package org.masiv.rouletteApi.controllers;
 import org.masiv.rouletteApi.exceptions.RouletteServicesException;
 import org.masiv.rouletteApi.model.Bet;
+import org.masiv.rouletteApi.model.User;
 import org.masiv.rouletteApi.services.RouletteServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,8 +32,9 @@ public class RouletteController {
     @PostMapping("roulette/{id}/bet")
     public ResponseEntity<?> addBetById(@PathVariable String id, @RequestBody Bet bet, @RequestHeader("user-id") String userId){
         try{
-            services.addBetById(id, bet, userId);
-
+            System.out.println("APUESTA:");
+            System.out.println(bet);
+            services.addBetById(id, bet, new User(userId));
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (RouletteServicesException e){
 
@@ -51,6 +53,7 @@ public class RouletteController {
     }
     @GetMapping
     public ResponseEntity<?> getAllRoulettes(){
+
         return new ResponseEntity<>(services.getAllRoulettes(), HttpStatus.OK);
     }
 }

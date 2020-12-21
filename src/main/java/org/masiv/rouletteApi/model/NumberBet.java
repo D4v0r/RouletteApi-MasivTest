@@ -4,8 +4,8 @@ import lombok.Setter;
 @Getter @Setter
 public class NumberBet extends Bet{
     private int number;
-    public NumberBet(double money, User user, int number) {
-        super(money, user);
+    public NumberBet(double money, int number) {
+        super(money);
         this.number = number;
     }
     @Override

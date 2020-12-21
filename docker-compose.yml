@@ -4,10 +4,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: d4v0r/masivtest
     container_name: masivTest
     environment:
-      - REDIS_HOST
+      - REDIS_HOST=172.17.0.1
     depends_on:
       - db
     ports:
