@@ -37,7 +37,6 @@ public class RouletteServicesImpl implements RouletteServices {
         bet.setUser(user);
         try {
             roulette.addBet(bet);
-            System.out.println(roulette.getBets());
             repository.save(roulette);
         }catch (RouletteException e){
             throw new RouletteServicesException(e.getMessage(), e);

@@ -32,9 +32,8 @@ public class RouletteController {
     @PostMapping("roulette/{id}/bet")
     public ResponseEntity<?> addBetById(@PathVariable String id, @RequestBody Bet bet, @RequestHeader("user-id") String userId){
         try{
-            System.out.println("APUESTA:");
-            System.out.println(bet);
             services.addBetById(id, bet, new User(userId));
+
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (RouletteServicesException e){
 
