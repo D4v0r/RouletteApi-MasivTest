@@ -16,7 +16,7 @@ Para la instalación del proyecto es necesario clonar este repositorio ingresand
 $ git clone https://github.com/D4v0r/RouletteApi-MasivTest
 ```
 
-Una vez se tiene el repositorio en su máquina la aplicación se pone en marcha al ingresar el siguiente comando:
+Una vez tenga el repositorio en su máquina la aplicación se pone en marcha al ingresar el siguiente comando:
 
 ```
 $ docker-compose up -d
